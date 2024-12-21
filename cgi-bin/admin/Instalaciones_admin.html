@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../../styles/styles.css">
+    <title>RiverText - Admin</title>
+</head>
+<body>
+    <div class="wrapper">
+        <nav class="nav">
+            <div class="nav-logo">
+                <p>RiverText</p>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="#" class="link active">Inicio</a></li>
+                    <li><a href="comunicados_admin.html" class="link">Comunicados</a></li>
+                    <li><a href="eventos_admin.html" class="link">Eventos</a></li>
+                    <li><a href="Instalaciones_admin.html" class="link">Instalaciones</a></li>
+                    <li><a href="equipos_admin.html" class="link">Equipos</a></li>
+                    <li><a href="pagos_admin.html" class="link">Pagos</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="form-box">
+            <div class="register-container">
+                <header>Agregar Complejo Deportivo</header>
+                <br>
+                <form action="../instalaciones.pl" method="post">
+                    <div class="input-box">
+                        <input type="text" name="nombre" class="input-field" placeholder="Nombre del complejo" required>
+                        <i class="bx bx-building-house"></i>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="text" name="tipo" class="input-field" placeholder="Tipo de deporte" required>
+                        <i class="bx bx-football"></i>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="number" name="capacidad" class="input-field" placeholder="Capacidad" required>
+                        <i class="bx bx-user"></i>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="submit" name="accion" class="submit" value="Agregar Complejo">
+                    </div>
+                    <br>
+                </form>
+
+                <form action="instalaciones.pl" method="post">
+                    <input type="submit" name="accion" value="Visualizar" class="submit">
+                </form>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

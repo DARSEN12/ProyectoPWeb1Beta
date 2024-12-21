@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>RiverText</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: auto;
+        }
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .form-box {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-size: cover;
+            background-position: center;
+            padding: 2rem;
+        }
+        .register-container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 1200px;
+            width: 100%;
+        }
+        .register-container header {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .sports-complex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .sports-complex .complex {
+            border: 1px solid #000;
+            padding: 1rem;
+            flex: 1 1 calc(33.333% - 2rem);
+            box-sizing: border-box;
+            background: #fff;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <nav class="nav">
+            <div class="nav-logo">
+                <p>RiverText</p>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="index.html" class="link">Inicia Sesion</a></li>
+                    <li><a href="inicio.html" class="link">Inicio</a></li>
+                    <li><a href="comunicados.html" class="link">Comunicados</a></li>
+                    <li><a href="eventos.html" class="link">Eventos</a></li>
+                    <li><a href="Instalaciones.html" class="link active">Instalaciones</a></li>
+                    <li><a href="about.html" class="link">Acerca de nosotros</a></li>
+                    <li><a href="pedido.html" class="link">Pedidos</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="form-box">
+            <div class="register-container">
+                <header>Lista de Complejos Deportivos</header>
+                <div class="sports-complex">
+                    <iframe src="cgi-bin/visualizar.pl" style="width:100%; height:400px; border:none;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

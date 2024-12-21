@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Configuración básica de la página web -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../../styles/style4.css">
+    <title>RiverText</title>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Barra de navegación-->
+        <nav class="nav">
+            <div class="nav-logo">
+                <p>RiverText (Admin)</p> <!--nombre-->
+            </div>
+            <div class="nav-menu" id="navMenu">
+                
+                <ul>
+                    <li><a href="inicio_admin.html" class="link active">Inicio</a></li>
+                    <li><a href="comunicados_admin.html" class="link">Comunicados</a></li>
+                    <li><a href="eventos_admin.html" class="link">Eventos</a></li>
+                    <li><a href="Instalaciones_admin.html" class="link">Instalaciones</a></li>
+                    <li><a href="pagos_admin.html" class="link">Pagos</a></li>
+                    <li><a href="../../inicio.html" class="link">Salir</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <h1>Administración de Pagos</h1>
+        <!-- visualizar los pagos registrados -->
+        <section id="visualizacion-pagos">
+            <h2>Pagos Registrados</h2>
+            <!-- Iframe que muestra una página externa para la visualización de pagos -->
+            <iframe src="../display_paymentsAdmin.pl" width="100%" height="400px"></iframe>
+        </section>
+
+        <!--actualizar el estado de los pagos -->
+        <section id="actualizacion-pago">
+            <h2>Actualizar Estado de Pago</h2>
+            <!-- Formulario para enviar la actualización del estado de un pago -->
+            <form action="../update_payment.pl" method="post">
+                <!-- Campo para ingresar el ID-->
+                <label for="pago_id">ID del Pago:</label>
+                <input type="text" id="pago_id" name="pago_id" required>
+
+                <!-- Selector para elegir el nuevo estado-->
+                <label for="estado">Nuevo Estado:</label>
+                <select id="estado" name="estado">
+                    <option value="pendiente">Pendiente</option>
+                    <option value="completado">Completado</option>
+                    <option value="fallido">Fallido</option>
+                </select>
+
+                
+                <button type="submit">Actualizar Estado</button>
+            </form>
+        </section>
+    </div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Realizar Pedido</title>
+    <link rel="stylesheet" href="styles/style3.css">
+    <!--El método `showPaymentDetails` se utiliza para mostrar los detalles de pago al usuario. 
+    Cuando se invoca, típicamente recuperaría información de pago, como detalles de la tarjeta de crédito, 
+    monto a pagar, y opciones de pago disponibles, desde una fuente de datos y luego actualizaría la interfaz 
+    de usuario de la página para mostrar esta información al usuario.-->
+    <script>
+        function showPaymentDetails() {
+            var metodoPago = document.getElementById("metodo_pago").value;
+            var detallesTransferencia = document.getElementById("detalles_transferencia");
+            var detallesYape = document.getElementById("detalles_yape");
+            var otrosMetodos = document.getElementById("otros_metodos");
+
+            detallesTransferencia.style.display = "none";
+            detallesYape.style.display = "none";
+            otrosMetodos.style.display = "none";
+
+            if (metodoPago === "Transferencia") {
+                detallesTransferencia.style.display = "block";
+            } else if (metodoPago === "Yape") {
+                detallesYape.style.display = "block";
+            } else if (metodoPago === "Otros") {
+                otrosMetodos.style.display = "block";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav class="nav">
+            <div class="nav-logo">
+                <p>RiverText</p>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="index.html" class="link">Inicia Sesion</a></li>
+                    <li><a href="inicio.html" class="link">Inicio</a></li>
+                    <li><a href="comunicados.html" class="link">Comunicados</a></li>
+                    <li><a href="eventos.html" class="link">Eventos</a></li>
+                    <li><a href="Instalaciones.html" class="link">Instalaciones</a></li>
+                    <li><a href="about.html" class="link">Informacion</a></li>
+                    <li><a href="pedido.html" class="link">Pedidos</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+            <!--Dentro de esta clase, se presenta un formulario que permite a los usuarios 
+            ingresar detalles para realizar un pedido. Este formulario incluye campos para la descripción 
+            del pedido, el monto, y el método de pago. Dependiendo del método de pago seleccionado (Transferencia, Yape, Otros), 
+            se muestran detalles adicionales específicos para cada método. Esto se logra mediante JavaScript que altera la 
+            visibilidad de los elementos basados en la selección del usuario. El formulario se envía a un script del lado del 
+            servidor para su procesamiento mediante el método POST.-->
+            <h1>Realizar Pedido</h1>
+            <!-- Inicio del formulario para realizar un pedido -->
+            <form action="cgi-bin/create_order.pl" method="post">
+           
+                <label for="descripcion">Descripción del Pedido:</label>
+                <input type="text" id="descripcion" name="descripcion" required>
+
+          
+                <label for="cantidad">Monto:</label>
+                <input type="number" step="0.01" id="cantidad" name="cantidad" required>
+
+         
+                <label for="metodo_pago">Método de Pago:</label>
+                <select id="metodo_pago" name="metodo_pago" onchange="showPaymentDetails()" required>
+                    <option value="">Seleccione un método de pago</option>
+                    <option value="Transferencia">Transferencia</option>
+                    <option value="Yape">Yape</option>
+                    <option value="Otros">Otros</option>
+                </select>
+
+                <div id="detalles_transferencia" style="display:none;">
+                    <p>CCI: xxxxxxx</p>
+                    <p>Nombre: xxxx</p>
+                </div>
+
+            
+                <div id="detalles_yape" style="display:none;">
+                    <p>Yape: 99999</p>
+                </div>
+
+            
+                <div id="otros_metodos" style="display:none;">
+                    <label for="otros_detalles">Detalles del Método de Pago:</label>
+                    <input type="text" id="otros_detalles" name="otros_detalles">
+                </div>
+
+                <!-- Botón para enviar el formulario y realizar el pedido -->
+                <button type="submit">Realizar Pedido</button>
+            </form>
+
+            <!-- Sección para visualizar los pagos registrados por el usuario -->
+            <section id="visualizacion-pagos">
+                <h2>Pagos Registrados</h2>
+                <!-- Iframe para mostrar los pagos registrados, apunta a un script del lado del servidor -->
+                <iframe src="cgi-bin/display_paymentsUser.pl" width="100%" height="200px"></iframe>
+            </section>
+        </div>
+</body>
+
+</html>

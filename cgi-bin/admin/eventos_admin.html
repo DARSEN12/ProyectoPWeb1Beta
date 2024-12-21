@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../../styles/styles.css">
+    <title>RiverText</title>
+</head>
+<body>
+    <div class="wrapper">
+        <nav class="nav">
+            <div class="nav-logo">
+                <p>RiverText (Admin)</p>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="inicio_admin.html" class="link active">Inicio</a></li>
+                    <li><a href="comunicados_admin.html" class="link">Comunicados</a></li>
+                    <li><a href="eventos_admin.html" class="link">Eventos</a></li>
+                    <li><a href="Instalaciones_admin.html" class="link">Instalaciones</a></li>
+                    <li><a href="pagos_admin.html" class="link">Pagos</a></li>
+                    <li><a href="../../inicio.html" class="link">SALIR</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!----------------------------- modificar  ----------------------------------->
+        <div class="content">
+            <div class="buttons">
+                <a href="/ejercicio/cgi-bin/todos_eventos.pl" class="btn">Ver todos los eventos</a>
+            </div>
+            <form action="/ejercicio/cgi-bin/crear_eventos.pl" method="post" class="form">
+                <h2>Crear Nuevo Evento</h2>
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" name="titulo" required>
+
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion" required></textarea>
+
+                <label for="tipo_evento">Tipo de Evento:</label>
+                <input type="text" id="tipo_evento" name="tipo_evento" required>
+
+                <label for="fecha_evento">Fecha del Evento:</label>
+                <input type="date" id="fecha_evento" name="fecha_evento" required>
+
+                <label for="instalacion">Instalación:</label>
+                <input type="text" id="instalacion" name="instalacion" required>
+
+                <input type="submit" value="Crear Evento">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+

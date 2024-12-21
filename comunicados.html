@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>RiverText</title>
+    <style>
+        .comunicados-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 150px
+        }
+        .comunicado-box {
+            background-color: #4436e3;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+            width: 300px;
+            padding: 20px;
+            text-align: center;
+        }
+        .comunicado-box img {
+            width: 100%;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .comunicado-box h3 {
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+        .comunicado-box p {
+            font-size: 0.9em;
+            color: #fcfcfc;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table th, table td {
+            padding: 10px;
+            text-align: left;
+        }
+        table th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <nav class="nav">
+            <div class="nav-logo">
+                <p>RiverText</p>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="index.html" class="link">Inicia Sesion</a></li>
+                    <li><a href="inicio.html" class="link">Inicio</a></li>
+                    <li><a href="comunicados.html" class="link active">Comunicados</a></li>
+                    <li><a href="eventos.html" class="link">Eventos</a></li>
+                    <li><a href="Instalaciones.html" class="link">Instalaciones</a></li>
+                    <li><a href="about.html" class="link">Informacion</a></li>
+                    <li><a href="pedido.html" class="link">Pedidos</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!----------------------------- Comunicados Boxes ----------------------------------->
+        <div class="comunicados-container">
+            <!-- Comunicados Boxes will be updated dynamically with content -->
+        </div>
+        <!----------------------------- Lista de Comunicados ----------------------------------->
+        <h2>Lista de Comunicados</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Descripción</th>
+                    <th>Fecha de Publicación</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Contenido de la tabla generado por JavaScript -->
+            </tbody>
+        </table>  
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Function to load comunicados and display in both sections
+            function loadComunicados() {
+                fetch('/cgi-bin/mostrar_comunicados_publico.pl')
+                    .then(response => response.json())
+                    .then(data => {
+                        const comunicadosContainer = document.querySelector('.comunicados-container');
+                        const tableBody = document.getElementById('tableBody');
+
+                        // Display the first 6 comunicados in boxes
+                        data.slice(0, 8).forEach((comunicado, index) => {
+                            let comunicadoBox = document.createElement('div');
+                            comunicadoBox.className = 'comunicado-box';
+                            
+                            let img = document.createElement('img');
+                            img.src = `imagenes/img_comu${index + 1}.jpg`;
+                            img.alt = `Imagen del Comunicado ${index + 1}`;
+                            comunicadoBox.appendChild(img);
+                            
+                            let title = document.createElement('h3');
+                            title.textContent = comunicado.Titulo;
+                            comunicadoBox.appendChild(title);
+                            
+                            let content = document.createElement('p');
+                            content.textContent = comunicado.Contenido;
+                            comunicadoBox.appendChild(content);
+                            
+                            let date = document.createElement('p');
+                            date.textContent = `Fecha: ${comunicado.Fecha}`;
+                            comunicadoBox.appendChild(date);
+                            
+                            comunicadosContainer.appendChild(comunicadoBox);
+                        });
+
+                        // Display all comunicados in the table
+                        data.forEach(comunicado => {
+                            let row = document.createElement('tr');
+                            
+                            let tituloCell = document.createElement('td');
+                            tituloCell.textContent = comunicado.Titulo;
+                            row.appendChild(tituloCell);
+                            
+                            let contenidoCell = document.createElement('td');
+                            contenidoCell.textContent = comunicado.Contenido;
+                            row.appendChild(contenidoCell);
+                            
+                            let fechaCell = document.createElement('td');
+                            fechaCell.textContent = comunicado.Fecha;
+                            row.appendChild(fechaCell);
+                            
+                            tableBody.appendChild(row);
+                        });
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+
+            loadComunicados();
+        });
+    </script>
+</body>
+</html>
